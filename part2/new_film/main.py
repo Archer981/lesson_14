@@ -24,14 +24,14 @@ import sqlite3
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ("")  # TODO измените код запроса
+sqlite_query = ("select title from netflix order by date_added desc limit 1")  # TODO измените код запроса
 cur.execute(sqlite_query)
 executed_query = cur.fetchall()
 
 # TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате
 
-result = ""
+result = executed_query[0][0]
 
 if __name__ == '__main__':
     print(result)

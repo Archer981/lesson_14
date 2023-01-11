@@ -27,14 +27,19 @@ import sqlite3
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ("")  # TODO измените код запроса
+sqlite_query = """
+                select SUM(duration)
+                from netflix
+                where type = 'TV Show' and director like '%Alastair Fothergill%'
+                group by director = 'Alastair Fothergill'
+                """  # TODO измените код запроса
 cur.execute(sqlite_query)
 executed_query = cur.fetchall()
 
 # TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате
 
-result = ""
+result = f'Длительность всех сериалов режиссера Alastair Fothergill составляет {executed_query[0][0]} сезона.'
 
 if __name__ == '__main__':
     print(result)

@@ -29,10 +29,15 @@ import sqlite3
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ("")  # TODO измените код запроса
+sqlite_query = """
+                select SUM(duration)
+                from netflix
+                where release_year = 2010 and `type` = 'Movie'
+                group by release_year = 2010
+"""  # TODO измените код запроса
 cur.execute(sqlite_query)
 executed_query = cur.fetchall()
-result = ""
+result = f'Чтобы посмотреть все фильмы, нам нужно {int(executed_query[0][0] / 60)} часов.'
 # TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате
 con.close()

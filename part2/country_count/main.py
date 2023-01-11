@@ -32,7 +32,14 @@ import prettytable
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ("")  # TODO измените код запроса
+sqlite_query = ("""
+                select country as 'Страна', count(*) as 'количество'
+                from netflix
+                where country not null
+                group by country
+                having count(*) >= 100
+                order by count(*) desc
+""")  # TODO измените код запроса
 result = cur.execute(sqlite_query)
 
 # не удаляйте код дальше, он нужен для вывода результата

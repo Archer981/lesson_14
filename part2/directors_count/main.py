@@ -34,7 +34,13 @@ import prettytable
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ("")  # TODO измените код запроса
+sqlite_query = ("""
+                select director as 'Режиссер', count(*) as 'количество'
+                from netflix
+                where director != ''
+                group by director
+                having count(*) > 10
+""")  # TODO измените код запроса
 result = cur.execute(sqlite_query)
 
 # не удаляйте код дальше, он нужен для вывода результата

@@ -31,7 +31,9 @@ import prettytable
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ('select title from netflix where title like"%train%"')  # TODO измените код запроса
+sqlite_query = """
+                select title from netflix where type = 'Movie' and title like '%train%'
+"""  # TODO измените код запроса
 result = cur.execute(sqlite_query)
 
 # не удаляйте код дальше, он нужен для вывода результата
