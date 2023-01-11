@@ -29,7 +29,11 @@ import prettytable
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ("")  # TODO измените код запроса
+sqlite_query = ('select title as "Название",'
+                'director as "Режиссер",'
+                'date_added as "Время добавления",'
+                'rating as "Возрастной рейтинг"'
+                ' from netflix order by date_added desc limit 10')  # TODO измените код запроса
 result = cur.execute(sqlite_query)
 
 # не удаляйте код дальше, он нужен для вывода результата
